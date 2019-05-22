@@ -9,4 +9,4 @@
   pip:
     name: '{{ name }}'
     state: present
-
+    executable: pip3
