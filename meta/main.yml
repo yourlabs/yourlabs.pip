@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: James Pic
+  role_name: pip
   description: Simple pip3 role
   company: YourLabs
   issue_tracker_url: https://yourlabs.io/oss/yourlabs.pip/issues
