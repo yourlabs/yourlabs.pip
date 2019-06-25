@@ -8,5 +8,5 @@
 - name: Pip install
   pip:
     name: '{{ name }}'
-    state: present
+    state: latest
     executable: pip3
