@@ -2,10 +2,17 @@
 
 - name: Install pip
   package:
+    install_recommends: no
     name: '{{ pip_package_name[ansible_os_family] }}'
     state: present
 
-- name: Pip install
+- name: Pip install setuptools
+  pip:
+    name: setuptools
+    state: latest
+    executable: pip3
+
+- name: Pip install your package
   pip:
     name: '{{ name }}'
     state: latest
