@@ -1,24 +1,23 @@
 ---
 
-- name: Install pip (not Archlinux)
-  when: ansible_distribution != 'Archlinux'
+- name: Install pip
   package:
     name: '{{ pip_package_name[ansible_os_family] }}'
     state: present
 
-- name: Install pip (Archlinux)
-  when: ansible_distribution == 'Archlinux'
-  shell: pacman -Sy --noconfirm python-pip
-
 - name: Pip install setuptools
-  when: ansible_distribution != 'Archlinux'
   pip:
     name: setuptools
     state: latest
     executable: pip3
 
+- name: Find if pip3 exists
+  shell: which pip3
+  failed_when: false
+  register: pip3
+
 - name: Pip install your package
   pip:
     name: '{{ name }}'
     state: latest
-    executable: pip3
+    executable: '{{ "pip3" if pip3.rc == 0 else "pip" }}'
